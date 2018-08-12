@@ -1,0 +1,57 @@
+{% extends "main.html" %}
+{% block content %}
+	<div class="row landing-header">
+		<div class="col-10">
+			<img src="/static/logo.png" alt="" class="img-fluid logo">
+			<h3 class="logo-title">Favourite Resturants</h3>
+		</div>
+		<div class="col-2">
+			<div class="login-btn">
+					<a href="{{url_for('showLogin')}}"> Log in </a>
+			</div>
+		</div>
+	</div>
+
+	<div class="container content-wrapper">
+		
+
+	<div class="row">
+		<div class="col">
+			<h1>Featured Restaurants</h1>
+		</div>
+	</div>
+
+	<div class = 'flash'>
+		      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+	</div>
+
+	<div class="row">
+
+	
+	{% for restaurant in restaurants %}
+		<div class="col-4 text-center">
+			<img id="restaurant_img" src="/static/imgs/10.png" alt="food image" class="img-fluid resturant-img">
+
+			<a href = "{{url_for('showMenu', restaurant_id = restaurant.id)}}">
+				{{restaurant.name}}
+			</a>
+		</div>
+	{% endfor %}
+
+
+	</div>
+</div><!-- end content wrapper -->
+{% endblock %}
+
+			
+
